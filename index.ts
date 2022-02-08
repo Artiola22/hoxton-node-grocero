@@ -152,10 +152,10 @@ function renderCartItem(item: CartItem) {
 
   const addBtn: HTMLButtonElement | null = listItemEl.querySelector('.add-btn')
   
-  addBtn?.addEventListener('click', event => addItemToCart(item.id))
+  if(addBtn !== null) addBtn.addEventListener('click', event => addItemToCart(item.id))
 
   const removeBtn: HTMLButtonElement | null = listItemEl.querySelector('.remove-btn')
-  removeBtn?.addEventListener('click', event => removeItemFromCart(item.id))
+  if(removeBtn !== null)removeBtn.addEventListener('click', event => removeItemFromCart(item.id))
 
   cartItemList?.appendChild(listItemEl)
 }
@@ -170,12 +170,12 @@ function renderCartItems():void {
 
 /* RENDER THE TOTAL */
 
-const totalNumber: Element | null = document.querySelector('.total-number')
+const totalNumber: HTMLSpanElement | null = document.querySelector('.total-number')
 
 function renderTotal() {
   let total = 0
 
   state.cart.forEach(item => (total += item.quantity * item.price))
-
+  if(totalNumber !== null)
   totalNumber.innerText = `£${total.toFixed(2)}`
 }
